@@ -16,23 +16,25 @@ namespace PlayWithParticles
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
 
-        ColorPoint point1; 
-        GravityPoint point2;
+        ColorPoint point1;
+        ColorPoint point2;
 
         public Form1()
         {
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
+            picDisplay.MouseWheel += picDisplay_MouseWheel;
+
             this.emitter = new Emitter // создаю эмиттер и привязываю его к полю emitter
             {
                 Direction = 0,
-                Spreading = 10,
-                SpeedMin = 10,
+                Spreading = 0,
+                SpeedMin = 1,
                 SpeedMax = 10,
                 ColorFrom = Color.Gold,
                 ColorTo = Color.FromArgb(0, Color.Red),
-                ParticlesPerTick = 10,
+                ParticlesPerTick = 1,
                 X = picDisplay.Width / 2,
                 Y = picDisplay.Height / 2,
             };
@@ -44,11 +46,11 @@ namespace PlayWithParticles
                 X = picDisplay.Width / 2 + 100,
                 Y = picDisplay.Height / 2,
             };
-            //point2 = new GravityPoint
-            //{
-            //    X = picDisplay.Width / 2 - 100,
-            //    Y = picDisplay.Height / 2,
-            //};
+            point2 = new ColorPoint
+            {
+                X = picDisplay.Width / 2 - 100,
+                Y = picDisplay.Height / 2,
+            };
 
             // привязываем поля к эмиттеру
             emitter.impactPoints.Add(point1);
@@ -88,9 +90,41 @@ namespace PlayWithParticles
             labelDirection.Text = $"{tbDirection.Value}°";
         }
 
-        private void tbGraviton1_Scroll(object sender, EventArgs e)
+        private void tbSpread_Scroll(object sender, EventArgs e)
         {
-            point1.rad = tbGraviton1.Value;
-        }      
+            emitter.Spreading = tbSpread.Value;
+            labelSpread.Text = $"{tbSpread.Value}°";
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            emitter.SpeedMin = tbSpeed.Value - 10;
+            emitter.SpeedMax = tbSpeed.Value;
+        }
+
+        private void tbPartPerTick_Scroll(object sender, EventArgs e)
+        {
+            emitter.ParticlesPerTick = tbPartPerTick.Value;
+        }
+
+        private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
+        {
+            txtRadius.Text = $"{point1.rad}"; ;
+            if (e.Delta > 0)
+            {
+                point1.rad -= 3;
+                // "Вверх"
+                if (point1.rad < 0)
+                {
+                    point1.rad = 0;
+                }
+            }
+            else
+            {
+                point1.rad += 3;
+                // "Вниз"
+            }
+
+        }
     }
 }
