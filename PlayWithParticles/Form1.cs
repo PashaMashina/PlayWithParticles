@@ -16,7 +16,7 @@ namespace PlayWithParticles
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
 
-        GravityPoint point1; 
+        ColorPoint point1; 
         GravityPoint point2;
 
         public Form1()
@@ -39,21 +39,20 @@ namespace PlayWithParticles
 
             emitters.Add(this.emitter);
 
-            // добавил гравитон
-            point1 = new GravityPoint
+            point1 = new ColorPoint
             {
                 X = picDisplay.Width / 2 + 100,
                 Y = picDisplay.Height / 2,
             };
-            point2 = new GravityPoint
-            {
-                X = picDisplay.Width / 2 - 100,
-                Y = picDisplay.Height / 2,
-            };
+            //point2 = new GravityPoint
+            //{
+            //    X = picDisplay.Width / 2 - 100,
+            //    Y = picDisplay.Height / 2,
+            //};
 
             // привязываем поля к эмиттеру
             emitter.impactPoints.Add(point1);
-            emitter.impactPoints.Add(point2);
+            //emitter.impactPoints.Add(point2);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -79,8 +78,8 @@ namespace PlayWithParticles
             }
 
             // а тут передаем положение мыши, в положение гравитона
-            point2.X = e.X;
-            point2.Y = e.Y;
+            point1.X = e.X;
+            point1.Y = e.Y;
         }
 
         private void tbDirection_Scroll(object sender, EventArgs e)
@@ -91,14 +90,7 @@ namespace PlayWithParticles
 
         private void tbGraviton1_Scroll(object sender, EventArgs e)
         {
-            point1.Power = tbGraviton1.Value;
-        }
-
-        private void tbGraviton2_Scroll(object sender, EventArgs e)
-        {
-            point2.Power = tbGraviton2.Value;
-        }
-
-        
+            point1.rad = tbGraviton1.Value;
+        }      
     }
 }

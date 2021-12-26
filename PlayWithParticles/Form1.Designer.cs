@@ -45,7 +45,7 @@
             // 
             this.picDisplay.Location = new System.Drawing.Point(12, 12);
             this.picDisplay.Name = "picDisplay";
-            this.picDisplay.Size = new System.Drawing.Size(776, 426);
+            this.picDisplay.Size = new System.Drawing.Size(929, 598);
             this.picDisplay.TabIndex = 0;
             this.picDisplay.TabStop = false;
             this.picDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picDisplay_MouseMove);
@@ -58,7 +58,7 @@
             // 
             // tbDirection
             // 
-            this.tbDirection.Location = new System.Drawing.Point(12, 444);
+            this.tbDirection.Location = new System.Drawing.Point(12, 616);
             this.tbDirection.Maximum = 360;
             this.tbDirection.Name = "tbDirection";
             this.tbDirection.Size = new System.Drawing.Size(191, 45);
@@ -68,7 +68,7 @@
             // labelDirection
             // 
             this.labelDirection.AutoSize = true;
-            this.labelDirection.Location = new System.Drawing.Point(210, 444);
+            this.labelDirection.Location = new System.Drawing.Point(209, 616);
             this.labelDirection.Name = "labelDirection";
             this.labelDirection.Size = new System.Drawing.Size(17, 13);
             this.labelDirection.TabIndex = 2;
@@ -76,29 +76,28 @@
             // 
             // tbGraviton2
             // 
-            this.tbGraviton2.Location = new System.Drawing.Point(396, 444);
+            this.tbGraviton2.Location = new System.Drawing.Point(1057, 12);
             this.tbGraviton2.Maximum = 100;
             this.tbGraviton2.Name = "tbGraviton2";
             this.tbGraviton2.Size = new System.Drawing.Size(104, 45);
             this.tbGraviton2.TabIndex = 4;
             this.tbGraviton2.Value = 100;
-            this.tbGraviton2.Scroll += new System.EventHandler(this.tbGraviton2_Scroll);
             // 
             // tbGraviton1
             // 
-            this.tbGraviton1.Location = new System.Drawing.Point(286, 444);
-            this.tbGraviton1.Maximum = 100;
+            this.tbGraviton1.Location = new System.Drawing.Point(947, 12);
+            this.tbGraviton1.Maximum = 1000;
             this.tbGraviton1.Name = "tbGraviton1";
             this.tbGraviton1.Size = new System.Drawing.Size(104, 45);
             this.tbGraviton1.TabIndex = 5;
-            this.tbGraviton1.Value = 100;
+            this.tbGraviton1.Value = 50;
             this.tbGraviton1.Scroll += new System.EventHandler(this.tbGraviton1_Scroll);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 486);
+            this.ClientSize = new System.Drawing.Size(1173, 673);
             this.Controls.Add(this.tbGraviton1);
             this.Controls.Add(this.tbGraviton2);
             this.Controls.Add(this.labelDirection);

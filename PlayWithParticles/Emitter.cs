@@ -33,6 +33,9 @@ namespace PlayWithParticles
 
         public int ParticlesPerTick = 10;
 
+        public Color ColorFromDefault = Color.White; // начальный цвет частицы
+        public Color ColorToDefault = Color.FromArgb(0, Color.Black); // конечный цвет частиц
+
         public Color ColorFrom = Color.White; // начальный цвет частицы
         public Color ColorTo = Color.FromArgb(0, Color.Black); // конечный цвет частиц
 
@@ -48,6 +51,10 @@ namespace PlayWithParticles
         public virtual void ResetParticle(Particle particle)
         {
             particle.Life = Particle.rand.Next(LifeMin, LifeMax);
+
+            var p = (particle as Particle.ParticleColorful);
+            p.FromColor = ColorFromDefault;
+            p.ToColor = ColorToDefault;
 
             particle.X = X;
             particle.Y = Y;
