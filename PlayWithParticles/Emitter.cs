@@ -11,6 +11,7 @@ namespace PlayWithParticles
     {
         public float GravitationX = 0;
         public float GravitationY = 0; 
+        public float GravitiClr = 0;
 
         List<Particle> particles = new List<Particle>();
 
@@ -52,6 +53,8 @@ namespace PlayWithParticles
 
         public virtual void ResetParticle(Particle particle)
         {
+            particle.TpIn = true;
+            particle.TpOut = true;
             particle.Life = Particle.rand.Next(LifeMin, LifeMax);
 
             var p = (particle as Particle.ParticleColorful);
@@ -102,9 +105,17 @@ namespace PlayWithParticles
                     {
                         point.ImpactParticle(particle);
                     }
-
-                    particle.SpeedX += GravitationX;
-                    particle.SpeedY += GravitationY;
+                    var partic = (particle as Particle.ParticleColorful);
+                    if (partic.FromColor == Color.White)
+                    {
+                        particle.SpeedX += GravitationX;
+                        particle.SpeedY += GravitationY;
+                    }
+                    else
+                    {
+                        particle.SpeedX += GravitationX;
+                        particle.SpeedY += GravitiClr;
+                    }
                 }
             }
             while (particlesToCreate >= 1 & maxPrticles >= 1)

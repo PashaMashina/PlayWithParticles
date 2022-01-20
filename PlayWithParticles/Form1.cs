@@ -50,18 +50,16 @@ namespace PlayWithParticles
 
             tp = new Portal
             {
-                X = picDisplay.Width / 2 + 200,
-                Y = picDisplay.Height / 2,
-                InP = true,
-                radius = 50,
-                x2 = picDisplay.Width / 2 -200,
-                y2 = picDisplay.Height / 2,
+                X = picDisplay.Width / 2,
+                Y = picDisplay.Height / 2 + 200,
+                radius = 100,
+                x2 = picDisplay.Width / 2,
+                y2 = picDisplay.Height / 2 - 200,
             };
 
             // привязываем поля к эмиттеру
             emitter.impactPoints.Add(point1);
             emitter.impactPoints.Add(tp);
-            //emitter.impactPoints.Add(point2);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -107,15 +105,17 @@ namespace PlayWithParticles
         {
             emitter.SpeedMin = tbSpeed.Value - 10;
             emitter.SpeedMax = tbSpeed.Value;
+            txtSpeed.Text = $"{tbSpeed.Value}";
         }
 
         private void tbPartPerTick_Scroll(object sender, EventArgs e)
         {
             emitter.ParticlesPerTick = tbPartPerTick.Value;
+            txtPerTick.Text = $"{tbPartPerTick.Value}";
         }
 
         private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
-        {
+        { 
             txtRadius.Text = $"{point1.rad}"; ;
             if (e.Delta > 0)
             {
@@ -130,8 +130,52 @@ namespace PlayWithParticles
             {
                 point1.rad += 3;
                 // "Вниз"
+                if (point1.rad > 300)
+                {
+                    point1.rad = 300;
+                }
             }
+        }
 
+        private void picDisplay_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                tp.X = e.X;
+                tp.Y = e.Y;
+            }
+            else
+            {
+                tp.x2 = e.X;
+                tp.y2 = e.Y;
+            }
+        }
+
+        private void trackBar1_Scroll_1(object sender, EventArgs e)
+        {
+            tp.radius = tbRadTp.Value;
+            txtSizeTP.Text = $"{tbRadTp.Value}";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (colorMenu.ShowDialog() == DialogResult.OK)
+            {
+                point1.color = colorMenu.Color;
+                btnColor.BackColor = colorMenu.Color;
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if(emitter.GravitiClr == 0)
+            {
+                emitter.GravitiClr = 1;
+            }
+            else
+            {
+                emitter.GravitiClr = 0;
+            }
         }
     }
 }
