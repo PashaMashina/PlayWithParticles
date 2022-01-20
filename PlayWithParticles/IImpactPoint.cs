@@ -140,4 +140,125 @@ namespace PlayWithParticles
             );
         }
     }
+
+    public class Portal : IImpactPoint
+    {
+            public int radius;
+            public bool InP;
+            public float x2;
+            public float y2;
+
+            public override void ImpactParticle(Particle particle)
+            {
+                float gX = X - particle.X;
+                float gY = Y - particle.Y;
+
+                float gX2 = x2 - particle.X;
+                float gY2 = x2 + particle.Y;
+
+                double r = Math.Sqrt(gX * gX + gY * gY); // считаем расстояние от центра точки до центра частицы
+                double r2 = Math.Sqrt(gX2 * gX2 + gY2 * gY2);
+                if (InP == true) // если портал - входной
+                {
+                    if (r + particle.Radius < radius/2) // если частица оказалось внутри входого портала
+                    {
+                        //то перемещаем её в другой портал
+                        particle.X = x2;
+                        particle.Y = y2;
+
+                    }
+                }
+                else
+                {
+                    if (r2 + particle.Radius < radius/2)
+                    {
+                        particle.X = X;
+                        particle.Y = Y;
+                    }
+                }
+            }
+            //отрисовка портала
+            public override void Render(Graphics g)
+            {
+                    g.DrawEllipse(
+                       new Pen(Color.Blue),
+                       X - radius/2,
+                       Y - radius/2,
+                       radius,
+                       radius
+                   );
+                    g.DrawEllipse(
+                       new Pen(Color.Orange),
+                       x2 - radius/2,
+                       y2 - radius/2,
+                       radius,
+                       radius
+                   );
+            }
+    }
+
+    //public class TpIn : IImpactPoint
+    //{
+    //    public int radius;
+    //    public Color color = Color.Green;
+
+    //    public bool TpInf;
+
+
+    //    public override void ImpactParticle(Particle particle)
+    //    {
+    //        float gX = X - particle.X;
+    //        float gY = Y - particle.Y;
+    //        double r = Math.Sqrt(gX * gX + gY * gY);
+    //        if (r + particle.Radius < radius / 2 && TpInf == true)
+    //        {
+    //            particle.X = X;
+    //            particle.Y = Y;
+    //            TpInf = false;
+    //        }
+    //    }
+
+    //    public override void Render(Graphics g)
+    //    {
+    //        g.DrawEllipse(
+    //            new Pen(color),
+    //            X - radius / 2,
+    //            Y - radius / 2,
+    //            radius,
+    //            radius
+    //        );
+    //    }
+    //}
+
+    //public class TpOut : IImpactPoint
+    //{
+    //    public int radius;
+    //    public Color color = Color.Red;
+
+    //    public bool TpOutInf;
+
+    //    public override void ImpactParticle(Particle particle)
+    //    {
+    //        float gX = X - particle.X;
+    //        float gY = Y - particle.Y;
+    //        double r = Math.Sqrt(gX * gX + gY * gY);
+    //        if (r + particle.Radius < radius / 2 && TpOutInf == true)
+    //        {
+    //            particle.X = TpIn.X;
+    //            particle.Y = TpIn.Y;
+    //            TpOutInf = false;
+    //        }
+    //    }
+
+    //    public override void Render(Graphics g)
+    //    {
+    //        g.DrawEllipse(
+    //            new Pen(color),
+    //            X - radius / 2,
+    //            Y - radius / 2,
+    //            radius,
+    //            radius
+    //        );
+    //    }
+    //}
 }

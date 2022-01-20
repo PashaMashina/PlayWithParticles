@@ -17,7 +17,8 @@ namespace PlayWithParticles
         Emitter emitter;
 
         ColorPoint point1;
-        ColorPoint point2;
+
+        Portal tp;
 
         public Form1()
         {
@@ -46,14 +47,20 @@ namespace PlayWithParticles
                 X = picDisplay.Width / 2 + 100,
                 Y = picDisplay.Height / 2,
             };
-            point2 = new ColorPoint
+
+            tp = new Portal
             {
-                X = picDisplay.Width / 2 - 100,
+                X = picDisplay.Width / 2 + 200,
                 Y = picDisplay.Height / 2,
+                InP = true,
+                radius = 50,
+                x2 = picDisplay.Width / 2 -200,
+                y2 = picDisplay.Height / 2,
             };
 
             // привязываем поля к эмиттеру
             emitter.impactPoints.Add(point1);
+            emitter.impactPoints.Add(tp);
             //emitter.impactPoints.Add(point2);
         }
 

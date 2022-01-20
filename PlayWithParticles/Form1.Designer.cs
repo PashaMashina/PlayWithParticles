@@ -142,7 +142,7 @@
             // tbPartPerTick
             // 
             this.tbPartPerTick.Location = new System.Drawing.Point(947, 236);
-            this.tbPartPerTick.Maximum = 30;
+            this.tbPartPerTick.Maximum = 50;
             this.tbPartPerTick.Minimum = 1;
             this.tbPartPerTick.Name = "tbPartPerTick";
             this.tbPartPerTick.Size = new System.Drawing.Size(191, 45);
@@ -196,7 +196,7 @@
             this.Controls.Add(this.tbDirection);
             this.Controls.Add(this.picDisplay);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Тест частиц";
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpread)).EndInit();
